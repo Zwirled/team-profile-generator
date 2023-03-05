@@ -82,6 +82,7 @@ const addEngineer = async () => {
             type: "input",
             message: "What is the engineer's email address?",
             name: "email",
+            validate: validateEmail,
         }, {
             type: "input",
             message: "What is the engineer's GitHub username?",
@@ -118,6 +119,7 @@ const addIntern = async () => {
             type: "input",
             message: "What is the intern's email address?",
             name: "email",
+            validate: validateEmail,
         }, {
             type: "input",
             message: "What is the intern's school?",
