@@ -1,0 +1,74 @@
+:root {
+    --teal: #035E7B;
+    --sage: #b7bb6f;
+    --pink: #E95B73;
+}
+
+html, body {
+    background-color: white;
+}
+
+.jumbotron {
+    background-color: var(--teal);
+    border-radius: 0px;
+}
+
+h1 {
+    color: white;
+    text-transform: uppercase;
+}
+
+.team-area {
+    gap: 25px;
+    flex-direction: column;
+}
+
+.card-header {
+    background-color: var(--pink);
+}
+
+.card-header:first-child {
+    border-radius: 0px;
+}
+
+h2 {
+    color: white;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 1.5em;
+    color: white;
+}
+
+.card-body {
+    background-color: var(--teal);
+}
+
+.list-group {
+    gap: 25px;
+}
+
+.list-group-item:first-child, .list-group-item:last-child {
+    border-radius: 0px;
+}
+
+.list-group-item {
+    border: 0px;
+    color: var(--teal);
+}
+
+.list-group-item a {
+    text-decoration: none;
+    color: var(--pink);
+}
+
+.list-group-item a:hover {
+    color: var(--sage);
+}
+
+@media only screen and (min-width: 992px) {
+    .team-area {
+        flex-direction: row;
+    }
+}
