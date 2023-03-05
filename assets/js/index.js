@@ -69,7 +69,38 @@ const addManager = async () => {
 
 // Function to prompt user for engineer information
 const addEngineer = async () => {
-    // Prompt to go here
+    const answers = await inquirer.prompt([
+        {
+            type: "input",
+            message: "What is the engineer's name?",
+            name: "name",
+        }, {
+            type: "input",
+            message: "What is the engineer's ID?",
+            name: "id",
+        }, {
+            type: "input",
+            message: "What is the engineer's email address?",
+            name: "email",
+        }, {
+            type: "input",
+            message: "What is the engineer's GitHub username?",
+            name: "github",
+        }
+    ]);
+
+    // Create a new Engineer object with user-provided information
+    const engineer = new Engineer(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.github
+    );
+
+    // Add the new Engineer object to the teamMembers array
+    teamMembers.push(engineer);
+    // Confirm that the Engineer was added successfully
+    console.log("Engineer added successfully!");
 }
 
 // Function to prompt user for intern information
