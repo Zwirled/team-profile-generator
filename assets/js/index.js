@@ -67,10 +67,61 @@ const addManager = async () => {
     console.log("Manager added successfully!");
 };
 
+// Function to prompt user for engineer information
+const addEngineer = async () => {
+    // Prompt to go here
+}
+
+// Function to prompt user for intern information
+const addIntern = async () => {
+    // Prompt to go here
+}
+
+const addTeamMember = async () => {
+    const answers = await inquirer.prompt([
+        {
+            type: "list",
+            message: "What type of team member would you like to add?",
+            name: "memberType",
+            choices: ["Engineer", "Intern"],
+        },
+    ]);
+    switch (answers.memberType) {
+        case "Engineer":
+            await addEngineer();
+            break;
+        case "Intern":
+            await addIntern();
+            break;
+        default:
+            break;
+    }
+};
+
 // Define an init function to start the application
 const init = async () => {
     // Call the addManager function to add the first manager
     await addManager();
+    // Loop to add more team members until the user chooses to stop
+    let addMore = true;
+    while (addMore) {
+        // Prompt the user to confirm if they want to add another team member
+        const answers = await inquirer.prompt([
+            {
+                type: "confirm",
+                message: "Would you like to add another team member?",
+                name: "addMore",
+            }
+        ]);
+
+        // Update the addMore variable based on user's response
+        addMore = answers.addMore;
+
+        // If the user wants to add another team member, call the addTeamMember function
+        if (addMore) {
+            await addTeamMember();
+        }
+    }
 };
 
 // Call the init function to start the application
