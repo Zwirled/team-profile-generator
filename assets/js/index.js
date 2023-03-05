@@ -105,7 +105,38 @@ const addEngineer = async () => {
 
 // Function to prompt user for intern information
 const addIntern = async () => {
-    // Prompt to go here
+    const answers = await inquirer.prompt([
+        {
+            type: "input",
+            message: "What is the intern's name?",
+            name: "name",
+        }, {
+            type: "input",
+            message: "What is the intern's ID?",
+            name: "id",
+        }, {
+            type: "input",
+            message: "What is the intern's email address?",
+            name: "email",
+        }, {
+            type: "input",
+            message: "What is the intern's school?",
+            name: "school",
+        }
+    ]);
+
+    // Create a new Intern object with user-provided information
+    const intern = new Intern(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.school
+    );
+
+    // Add the new Intern object to the teamMembers array
+    teamMembers.push(intern);
+    // Confirm the Intern was added successfully
+    console.log("Intern added successfully!");
 }
 
 const addTeamMember = async () => {
