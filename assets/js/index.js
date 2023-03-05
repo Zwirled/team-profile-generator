@@ -5,7 +5,7 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
-const OUTPUT_DIR = path.resolve(__dirname, "output");
+const OUTPUT_DIR = path.join(__dirname, '..', 'output');
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
@@ -162,6 +162,21 @@ const addTeamMember = async () => {
     }
 };
 
+// Define a function to generate and write the HTML file to disk
+const generateHTML = () => {
+    // Use the render function to generate HTML based on the team members array
+    const html = render(teamMembers);
+    // Use the writeFile method from the fs module to write the HTML to a file
+    // The outputPath variable is used to specify the file location and name
+    fs.writeFile(outputPath, html, function (err) {
+        // If there's an error while writing the file, throw it
+        if (err) throw err;
+
+        // If the file is written successfully, log a success message to the console
+        console.log("HTML file generated successfully!");
+    });
+};
+
 // Define an init function to start the application
 const init = async () => {
     // Call the addManager function to add the first manager
@@ -180,12 +195,12 @@ const init = async () => {
 
         // Update the addMore variable based on user's response
         addMore = answers.addMore;
-
         // If the user wants to add another team member, call the addTeamMember function
         if (addMore) {
             await addTeamMember();
         }
     }
+    generateHTML();
 };
 
 // Call the init function to start the application
