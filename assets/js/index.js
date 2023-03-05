@@ -14,6 +14,20 @@ const render = require("./src/page-template.js");
 // Create an empty array to hold the team members that will be added
 const teamMembers = [];
 
+// Check to make sure email address is a valid structure
+const validateEmail = function (email) {
+    // Use (regular expression) regex to check if email is in a valid format
+    const emailExists = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+
+    // If email is valid, return true. Otherwise, log an error message and return false
+    if (emailExists) {
+        return true;
+    } else {
+        console.log("\nPlease enter a valid email");
+        return false;
+    }
+};
+
 // Define a function to add a manager to the teamMembers array
 const addManager = async () => {
 
@@ -31,6 +45,7 @@ const addManager = async () => {
             type: "input",
             message: "What is the manager's email address?",
             name: "email",
+            validate: validateEmail,
         }, {
             type: "input",
             message: "What is the manager's office number?",
