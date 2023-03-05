@@ -6,6 +6,10 @@ class Employee {
         this.email = email;
     }
 
+    getName() {
+        return this.name;
+    }
+
     getId() {
         return this.id;
     }
